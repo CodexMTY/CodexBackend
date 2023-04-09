@@ -1,0 +1,2 @@
+class UpwardFbk < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class EvaluacionesAnuale < ApplicationRecord
+end
