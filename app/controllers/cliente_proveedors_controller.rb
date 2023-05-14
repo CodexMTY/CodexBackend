@@ -46,6 +46,7 @@ class ClienteProveedorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cliente_proveedor_params
-      params.fetch(:cliente_proveedor, {})
+      # params.fetch(:cliente_proveedor, {})
+      params.require(:cliente_proveedor).permit(:user_id, :promedio, :comentarios)
     end
 end

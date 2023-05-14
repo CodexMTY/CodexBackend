@@ -46,6 +46,7 @@ class EvaluacionesAnualesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def evaluaciones_anuale_params
-      params.fetch(:evaluaciones_anuale, {})
+      # params.fetch(:evaluaciones_anuale, {})
+      params.require(:evaluaciones_anuale).permit(:user_id, :ano, :performance, :potencial, :curva)
     end
 end
