@@ -30,6 +30,9 @@ class UserSerializer
             key_talent: user.key_talent,
             encuadre: user.encuadre,
             cet: user.cet,
+            estructura3: user.estructura3,
+            estructura4: user.estructura4,
+            estructura5: user.estructura5,
             created_at: user.created_at,
             updated_at: user.updated_at,
         }
