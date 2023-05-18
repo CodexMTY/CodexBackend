@@ -6,7 +6,13 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    serializedUsers = []
+    @users.each do |user|
+      user_serializer = UserSerializer.new(user: user)
+      serializedUsers << user_serializer.serialize_user(user)
+    end
+
+    render json: serializedUsers
   end
 
   # GET /users/1
