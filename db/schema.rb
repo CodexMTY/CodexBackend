@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_131027) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_181438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -48,23 +48,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_131027) do
     t.string "apellidos", null: false
     t.string "email"
     t.string "password_digest", null: false
-    t.integer "idm4", null: false
+    t.integer "idm4"
     t.date "cumpleanos"
-    t.date "fecha_ingreso", null: false
+    t.date "fecha_ingreso"
     t.string "estudios", default: [], array: true
     t.string "universidad"
     t.string "direccion"
-    t.string "puesto", null: false
-    t.integer "pc_cat", null: false
+    t.string "puesto"
+    t.integer "pc_cat"
     t.text "resumen"
     t.boolean "key_talent", default: false
     t.string "encuadre"
     t.integer "cet"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "estructura3", null: false
-    t.string "estructura4", null: false
-    t.string "estructura5", null: false
+    t.string "estructura3"
+    t.string "estructura4"
+    t.string "estructura5"
   end
 
 end
