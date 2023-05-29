@@ -16,6 +16,7 @@ class UserSerializer
             apellidos: user.apellidos,
             email: user.email,
             password_digest: user.password_digest,
+            status: user.status,
             idm4: user.idm4,
             estudios: user.estudios,
             cumpleanos: user.cumpleanos,

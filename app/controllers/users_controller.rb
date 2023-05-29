@@ -4,7 +4,12 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    inactive = params[:inactivos]
+    if inactive == "true"
+      @users = User.all
+    else 
+      @users = User.where(status: "activo")
+    end
 
     serializedUsers = []
     @users.each do |user|
@@ -42,7 +47,11 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
+    if @user.update(status: "inactivo")
+      render json: {message: "User deleted successfully"}, status: :ok
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   def batch_upload

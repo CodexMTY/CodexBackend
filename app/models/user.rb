@@ -4,9 +4,9 @@ class User < ApplicationRecord
     has_many :cliente_proveedors
     has_secure_password
 
-    validates :nombre, presence: true
-    validates :apellidos, presence: true
-    validates :email, presence: true, uniqueness: true
+    validates :nombre, presence: true, on: :create
+    validates :apellidos, presence: true, on: :create
+    validates :email, presence: true, uniqueness: true, on: :create
 
     def getEdad
         if self.cumpleanos
