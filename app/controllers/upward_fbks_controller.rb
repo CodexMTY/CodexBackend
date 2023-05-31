@@ -47,6 +47,6 @@ class UpwardFbksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def upward_fbk_params
       # params.fetch(:upward_fbk, {})
-      params.require(:upward_fbk).permit(:user_id, :promedio)
+      params.require(:upward_fbk).permit(:user_id, :promedio, :comments)
     end
 end
