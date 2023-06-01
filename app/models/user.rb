@@ -11,7 +11,11 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true, on: :create
 
     def get_image_url
-        url_for(self.image) if self.image.attached?
+        if self.image.attached?
+            return url_for(self.image)
+        else
+            return nil
+        end
     end
 
     def getEdad
