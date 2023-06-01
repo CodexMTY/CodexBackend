@@ -32,6 +32,7 @@ class UserSerializer
             encuadre: user.encuadre,
             cet: user.cet,
             jefe: user.jefe,
+            image: user.get_image_url(),
             estructura3: user.estructura3,
             estructura4: user.estructura4,
             estructura5: user.estructura5,
