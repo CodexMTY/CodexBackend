@@ -1,5 +1,5 @@
 require "active_support/core_ext/integer/time"
-Rails.application.routes.default_url_options = { host: "https://novus-api.onrender.com" }
+Rails.application.routes.default_url_options = { host: "https://codextern-4ny2.onrender.com" }
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
