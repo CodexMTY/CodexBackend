@@ -22,7 +22,9 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user, include: [:evaluaciones_anuales, :upward_fbks, :cliente_proveedors]
+    user_serializer = UserSerializer.new(user: @user)
+    user = user_serializer.serialize_user(@user)
+    render json: user
   end
 
   # POST /users

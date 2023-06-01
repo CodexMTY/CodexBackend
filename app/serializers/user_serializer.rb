@@ -8,7 +8,7 @@ class UserSerializer
         serialized_new_user = serialize_user(@user)
         serialized_new_user.to_json()
     end
-      
+
     def serialize_user(user)
         {
             id: user.id,
@@ -36,8 +36,11 @@ class UserSerializer
             estructura3: user.estructura3,
             estructura4: user.estructura4,
             estructura5: user.estructura5,
+            evaluaciones_anuales: user.evaluaciones_anuales,
+            upward_fbks: user.upward_fbks,
+            cliente_proveedors: user.cliente_proveedors,
             created_at: user.created_at,
-            updated_at: user.updated_at,
+            updated_at: user.updated_at
         }
     end   
 end
