@@ -1,6 +1,6 @@
 class EvaluacionesAnualesController < ApplicationController
   before_action :set_evaluaciones_anuale, only: %i[ show update destroy ]
-
+  before_action :authorize_request
   # GET /evaluaciones_anuales
   def index
     @evaluaciones_anuales = EvaluacionesAnuale.all

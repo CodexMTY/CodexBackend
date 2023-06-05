@@ -1,6 +1,6 @@
 class ClienteProveedorsController < ApplicationController
   before_action :set_cliente_proveedor, only: %i[ show update destroy ]
-
+  before_action :authorize_request
   # GET /cliente_proveedors
   def index
     @cliente_proveedors = ClienteProveedor.all

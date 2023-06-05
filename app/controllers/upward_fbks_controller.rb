@@ -1,6 +1,6 @@
 class UpwardFbksController < ApplicationController
   before_action :set_upward_fbk, only: %i[ show update destroy ]
-
+  before_action :authorize_request
   # GET /upward_fbks
   def index
     @upward_fbks = UpwardFbk.all

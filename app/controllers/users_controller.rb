@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   require 'csv'
   before_action :set_user, only: %i[ show update destroy ]
-
+  before_action :authorize_request, except: :create
   # GET /users
   def index
     inactive = params[:inactivos]
