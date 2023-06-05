@@ -11,13 +11,14 @@ class UsersController < ApplicationController
       @users = User.where(status: "activo")
     end
 
-    serializedUsers = []
-    @users.each do |user|
-      user_serializer = UserSerializer.new(user: user)
-      serializedUsers << user_serializer.serialize_user(user)
-    end
+    # serializedUsers = []
+    # @users.each do |user|
+    #   user_serializer = UserSerializer.new(user: user)
+    #   serializedUsers << user_serializer.serialize_user(user)
+    # end
 
-    render json: serializedUsers
+    # render json: serializedUsers
+    render json: @users
   end
 
   # GET /users/1
@@ -100,6 +101,6 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       # params.fetch(:user, {})
-      params.permit(:nombre, :email, :password, :password_confirmation, :apellidos, :idm4, :cumpleanos, :fecha_ingreso, :universidad, :direccion, :puesto, :pc_cat, :resumen, :key_talent, :encuadre, :cet, :estructura3, :estructura4, :estructura5, :jefe, :image, :estudios => [])
+      params.permit(:nombre, :email, :password, :password_confirmation, :apellidos, :idm4, :cumpleanos, :fecha_ingreso, :universidad, :direccion, :puesto, :pc_cat, :resumen, :key_talent, :encuadre, :cet, :estructura3, :estructura4, :estructura5, :jefe, :image, :status, :estudios => [])
     end
 end

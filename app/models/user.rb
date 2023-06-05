@@ -35,4 +35,12 @@ class User < ApplicationRecord
             nil
         end
     end
+
+    def is_active
+        if self.status == "activo"
+            return true
+        else
+            return false
+        end
+    end
 end
