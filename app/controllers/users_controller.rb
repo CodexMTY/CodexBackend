@@ -81,11 +81,12 @@ class UsersController < ApplicationController
         cet: row["cet"],
         estructura3: row["estructura3"],
         estructura4: row["estructura4"],
-        estructura5: row["estructura5"]
+        estructura5: row["estructura5"],
+        jefe: row["jefe"]
       }
     end
 
-    if User.insert_all(users)
+    if User.upsert_all(users)
       render json: {message: "Users uploaded successfully"}, status: :ok
     else
       render json: {message: "Users upload failed"}, status: :unprocessable_entity
