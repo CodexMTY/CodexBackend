@@ -11,14 +11,14 @@ class UsersController < ApplicationController
       @users = User.where(status: "activo")
     end
 
-    # serializedUsers = []
-    # @users.each do |user|
-    #   user_serializer = UserSerializer.new(user: user)
-    #   serializedUsers << user_serializer.serialize_user(user)
-    # end
+    serializedUsers = []
+    @users.each do |user|
+      user_serializer = UserSerializer.new(user: user)
+      serializedUsers << user_serializer.serialize_user(user)
+    end
 
-    # render json: serializedUsers
-    render json: @users
+    render json: serializedUsers
+    # render json: @users
   end
 
   # GET /users/1
