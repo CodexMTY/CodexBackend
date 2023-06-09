@@ -19,6 +19,8 @@ class UserSerializer
             status: user.status,
             idm4: user.idm4,
             estudios: user.estudios,
+            admin: user.admin,
+            super_admin: user.super_admin,
             cumpleanos: user.cumpleanos,
             edad: user.getEdad(),
             fecha_ingreso: user.fecha_ingreso,
