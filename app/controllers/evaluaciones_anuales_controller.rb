@@ -52,13 +52,14 @@ class EvaluacionesAnualesController < ApplicationController
         potencial: row["potencial"],
         curva: row["curva"]
       }
-      if EvaluacionesAnuale.upsert_all(evaluaciones)
-        render json: {message: "Evaluaciones Anuales uploaded successfully"}, status: :ok
-      else
-        render json: {message: "Evaluaciones Anuales upload failed"}, status: :unprocessable_entity
-      end
+    end
+    if EvaluacionesAnuale.upsert_all(evaluaciones)
+      render json: {message: "Evaluaciones Anuales uploaded successfully"}, status: :ok
+    else
+      render json: {message: "Evaluaciones Anuales upload failed"}, status: :unprocessable_entity
     end
   end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluaciones_anuale
