@@ -1,4 +1,5 @@
 class EvaluacionesAnualesController < ApplicationController
+  require 'csv'
   before_action :set_evaluaciones_anuale, only: %i[ show update destroy ]
   before_action :authorize_request
   # GET /evaluaciones_anuales
@@ -38,6 +39,26 @@ class EvaluacionesAnualesController < ApplicationController
     @evaluaciones_anuale.destroy
   end
 
+  def batch_upload
+    file_path = params[:file].path
+    data = CSV.parse(File.read(file_path), headers: true)
+    evaluaciones = []
+    data.each do |row|
+      evaluaciones <<
+      {
+        user_id: User.find_by(email: row["email"]).id,
+        ano: row["ano"],
+        performance: row["performance"],
+        potencial: row["potencial"],
+        curva: row["curva"]
+      }
+      if EvaluacionesAnuale.upsert_all(evaluaciones)
+        render json: {message: "Evaluaciones Anuales uploaded successfully"}, status: :ok
+      else
+        render json: {message: "Evaluaciones Anuales upload failed"}, status: :unprocessable_entity
+      end
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluaciones_anuale
