@@ -1,6 +1,7 @@
 class ClienteProveedorsController < ApplicationController
   before_action :set_cliente_proveedor, only: %i[ show update destroy ]
   before_action :authorize_request
+  require 'csv'
   # GET /cliente_proveedors
   def index
     @cliente_proveedors = ClienteProveedor.all
@@ -36,6 +37,26 @@ class ClienteProveedorsController < ApplicationController
   # DELETE /cliente_proveedors/1
   def destroy
     @cliente_proveedor.destroy
+  end
+
+  def batch_upload
+    file_path = params[:file].path
+    data = CSV.parse(File.read(file_path), headers: true)
+    cliente_provs = []
+    data.each do |row|
+      cliente_provs <<
+      {
+        user_id: User.find_by(email: row["email"]).id,
+        promedio: row["promedio"],
+        comentarios: row["comentarios"]
+      }
+    end
+    
+    if ClienteProveedor.upsert_all(cliente_provs)
+      render json: {message: "Cliente proveedors uploaded successfully"}, status: :ok
+    else
+      render json: {message: "Cliente proveedors upload failed"}, status: :unprocessable_entity
+    end
   end
 
   private

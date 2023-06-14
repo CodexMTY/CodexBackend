@@ -1,6 +1,7 @@
 class UpwardFbksController < ApplicationController
   before_action :set_upward_fbk, only: %i[ show update destroy ]
   before_action :authorize_request
+  require 'csv'
   # GET /upward_fbks
   def index
     @upward_fbks = UpwardFbk.all
@@ -36,6 +37,26 @@ class UpwardFbksController < ApplicationController
   # DELETE /upward_fbks/1
   def destroy
     @upward_fbk.destroy
+  end
+
+  def batch_upload
+    file_path = params[:file].path
+    data = CSV.parse(File.read(file_path), headers: true)
+    fbks = []
+    data.each do |row|
+      fbks <<
+      {
+        user_id: User.find_by(email: row["email"]).id,
+        promedio: row["promedio"],
+        comments: row["comentarios"]
+      }
+    end
+    
+    if UpwardFbk.upsert_all(fbks)
+      render json: {message: "Upward feedbacks uploaded successfully"}, status: :ok
+    else
+      render json: {message: "Upward feedbacks upload failed"}, status: :unprocessable_entity
+    end
   end
 
   private
